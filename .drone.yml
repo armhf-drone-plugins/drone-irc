@@ -1,0 +1,44 @@
+clone:
+  path: github.com/drone-plugins
+  recursive: true
+
+build:
+  image: golang:1.5
+  environment:
+    - GO15VENDOREXPERIMENT=1
+    - GOOS=linux
+    - GOARCH=arm
+    - CGO_ENABLED=0
+  commands:
+    - git clone --single-branch https://github.com/drone-plugins/drone-irc/
+    - cd drone-irc/
+    - sed -i 's/FROM alpine/FROM armhfbuild\/alpine/' Dockerfile
+    - go get
+    - go build
+    - go test
+
+publish:
+  docker:
+    username: $$DOCKER_USER
+    password: $$DOCKER_PASS
+    email: $$DOCKER_EMAIL
+    repo: armhfplugins/drone-irc
+    storage_driver: overlay
+    when:
+      repo: armhf-drone-plugins/drone-github-release
+      branch: master
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK_URL
+    channel: armhf
+
+plugin:
+  name: IRC
+  desc: Send build status notifications via IRC
+  type: notify
+  image: plugins/drone-irc
+  labels:
+    - chat
+    - messaging
+    - irc
