@@ -19,6 +19,8 @@ build:
 
 publish:
   docker:
+    context: drone-irc
+    file: drone-irc/Dockerfile
     username: $$DOCKER_USER
     password: $$DOCKER_PASSWORD
     email: $$DOCKER_EMAIL
