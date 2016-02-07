@@ -20,7 +20,7 @@ build:
 publish:
   docker:
     username: $$DOCKER_USER
-    password: $$DOCKER_PASS
+    password: $$DOCKER_PASSWORD
     email: $$DOCKER_EMAIL
     repo: armhfplugins/drone-irc
     storage_driver: overlay
