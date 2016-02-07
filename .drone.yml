@@ -3,7 +3,7 @@ clone:
   recursive: true
 
 build:
-  image: golang:1.5
+  image: armhfbuild/golang:1.5
   environment:
     - GO15VENDOREXPERIMENT=1
     - GOOS=linux
@@ -25,7 +25,7 @@ publish:
     repo: armhfplugins/drone-irc
     storage_driver: overlay
     when:
-      repo: armhf-drone-plugins/drone-github-release
+      repo: armhf-drone-plugins/drone-irc
       branch: master
 
 notify:
@@ -37,7 +37,7 @@ plugin:
   name: IRC
   desc: Send build status notifications via IRC
   type: notify
-  image: plugins/drone-irc
+  image: armhfplugins/drone-irc
   labels:
     - chat
     - messaging
