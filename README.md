@@ -1,4 +1,7 @@
 # drone-irc
+
+[![Build Status](https://armdrone.strahlungsfrei.de/api/badges/armhf-drone-plugins/drone-irc/status.svg)](https://armdrone.strahlungsfrei.de/armhf-drone-plugins/drone-irc)
+
 armhf port of drone-plugins/drone-irc
 
 Drone plugin to send build status notifications via IRC
